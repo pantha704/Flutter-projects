@@ -31,12 +31,17 @@ class _LocationScreenState extends State<LocationScreen> {
       if (weatherData == null) {
         temp = 0;
         description = "Still looking for you...";
-        city = "Your GPS might be turned off";
+        city = "Your GPS might be turned off!";
         icon = "😵";
+      } else if (weatherData.temp == null || weatherData.city == null) {
+        temp = 0;
+        description = "Sorry!";
+        city = "Could not find that place on earth :(";
+        icon = "😰";
       } else {
         temp = weatherData.temp;
         city = weatherData.city;
-        city = "in ${city?.replaceAll('_', ' ')}";
+        city = "in ${city?.replaceAll('_', ' ')}!";
         icon = weatherData.icon;
         description = weatherData.description;
       }
@@ -110,7 +115,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(right: 15.0),
                 child: Text(
-                  "$description $city!",
+                  "$description $city",
                   textAlign: TextAlign.right,
                   style: kMessageTextStyle,
                 ),

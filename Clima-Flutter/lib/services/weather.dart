@@ -56,6 +56,7 @@ class WeatherModel {
     NetworkHelper networkHelper = NetworkHelper();
     var uri = "$url/$cityName?key=$apiKey&unitGroup=uk";
     data = await networkHelper.fetch(uri);
+    if (data == null) return;
 
     city = cityName;
     today = data['days'][0];

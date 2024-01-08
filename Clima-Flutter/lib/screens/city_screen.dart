@@ -41,7 +41,8 @@ class _CityScreenState extends State<CityScreen> {
                 padding: EdgeInsets.all(20.0),
                 child: TextField(
                   onChanged: (value) {
-                      cityName = value;
+                      cityName = value.toTitleCase();
+                      print(cityName);
                   },
                   style: TextStyle(
                     color: Colors.black,
