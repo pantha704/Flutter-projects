@@ -58,7 +58,8 @@ class WeatherModel {
     data = await networkHelper.fetch(uri);
     if (data == null) return;
 
-    city = cityName;
+    city = cityName?.trim();
+    // print(city);
     today = data['days'][0];
     temp = data['days'][0]['temp'];
     description = getMessage(temp!.toInt());

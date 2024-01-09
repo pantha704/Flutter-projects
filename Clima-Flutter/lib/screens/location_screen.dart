@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'dart:ui';
 import 'package:clima/screens/city_screen.dart';
 import 'package:clima/services/weather.dart';
@@ -35,13 +36,13 @@ class _LocationScreenState extends State<LocationScreen> {
         icon = "😵";
       } else if (weatherData.temp == null || weatherData.city == null) {
         temp = 0;
-        description = "Sorry!";
+        description = "Ehh!";
         city = "Could not find that place on earth :(";
         icon = "😰";
       } else {
         temp = weatherData.temp;
         city = weatherData.city;
-        city = "in ${city?.replaceAll('_', ' ')}!";
+        city = "in ${city?.replaceAll('_', ' ')} !";
         icon = weatherData.icon;
         description = weatherData.description;
       }
@@ -81,13 +82,18 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () async {
-                      Navigator.push(
+                    onPressed: () async{
+                      var searchedCity = await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => CityScreen(),
                         ),
                       );
+
+                      if (searchedCity == null) return;
+                      else updateInfo(searchedCity);
+
+                      // print(searchedCity.runtimeType);
                     },
                     child: Icon(
                       Icons.location_city,

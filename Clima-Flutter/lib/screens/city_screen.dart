@@ -9,8 +9,8 @@ class CityScreen extends StatefulWidget {
 }
 
 class _CityScreenState extends State<CityScreen> {
-
   var cityName;
+  WeatherModel weather = WeatherModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +41,8 @@ class _CityScreenState extends State<CityScreen> {
                 padding: EdgeInsets.all(20.0),
                 child: TextField(
                   onChanged: (value) {
-                      cityName = value.toTitleCase();
-                      print(cityName);
+                    cityName = value.toTitleCase();
+                    // print(cityName);
                   },
                   style: TextStyle(
                     color: Colors.black,
@@ -51,10 +51,10 @@ class _CityScreenState extends State<CityScreen> {
                 ),
               ),
               TextButton(
-                onPressed: () async{
-                  WeatherModel weather = WeatherModel();
+                onPressed: () async {
+                  if (cityName == null) {return Navigator.pop(context);}
                   await weather.getCityData(cityName);
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LocationScreen(locationWeather: weather)));
+                  Navigator.pop(context, weather);
                 },
                 child: Text(
                   'Get Weather',

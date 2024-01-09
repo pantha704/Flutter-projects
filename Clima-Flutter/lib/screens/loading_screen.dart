@@ -49,14 +49,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Scaffold(
       body: GestureDetector(
         onTap: () async {
-          WeatherModel weather = WeatherModel();
-          await weather.getWeatherData();
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LocationScreen(locationWeather: weather),
-            ),
-          );
+          getData();
         },
         child: Center(
           child: SpinKitWaveSpinner(
