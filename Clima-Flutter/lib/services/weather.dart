@@ -64,7 +64,7 @@ class WeatherModel {
     description = getMessage(temp!.toInt());
     condition = today['conditions'].toLowerCase();
     icon = getWeatherIcon(condition);
-    print("\n\n$temp\n\n$city\n\n$icon\n\n$description\n\n$today");
+    // print("\n\n$temp\n\n$city\n\n$icon\n\n$description\n\n$today");
 
   }
 
@@ -81,7 +81,9 @@ class WeatherModel {
       return '🌫';
     } else if (condition.contains('clear') || condition.contains('sun')) {
       return '☀️';
-    } else if (condition.contains('partia') || condition.contains('cloud')) {
+    } else if (condition.contains('partia')){
+      return '🌤️';
+    } else if (condition.contains('cloud') || condition.contains('overcast')) {
       return '☁️';
     } else {
       return '🤷‍';
