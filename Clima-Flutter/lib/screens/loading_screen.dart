@@ -47,10 +47,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SpinKitWaveSpinner(
-          color: Colors.white,
-          size: 100,
+      body: GestureDetector(
+        onTap: () async {
+          WeatherModel weather = WeatherModel();
+          await weather.getWeatherData();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => LocationScreen(locationWeather: weather),
+            ),
+          );
+        },
+        child: Center(
+          child: SpinKitWaveSpinner(
+            color: Colors.white,
+            size: 100,
+          ),
         ),
       ),
     );
