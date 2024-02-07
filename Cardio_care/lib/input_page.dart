@@ -26,11 +26,11 @@ class _Input_pageState extends State<Input_page> {
       clr = Colors.brown.shade400;
     } else if (widget.value == "60-100") {
       img = 'normal.jpg';
-      msg = 'Your heartrate is normal. Keep up the good work. 🥂';
+      msg = 'Your pulse rate is normal. Keep up the good work. 🥂';
       clr = Colors.greenAccent;
     } else {
       img = 'high.jpg';
-      msg = '⚠ Your heartrate is high. You may have tachycardia or a fever. Seek medical attention.';
+      msg = '⚠ Your pulse rate is high. You may have tachycardia or a fever. Seek medical attention.';
       clr = Colors.redAccent;
     }
   }
@@ -62,7 +62,9 @@ class _Input_pageState extends State<Input_page> {
                 fit: BoxFit.fitWidth,
               ),
             ),
-            Text(msg, style: kButtonTextStyle.copyWith(fontSize: 25, color: clr),),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(msg, style: kButtonTextStyle.copyWith(fontSize: 25, color: clr),)),
             SizedBox(
               height: 70,
             ),
